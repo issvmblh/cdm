@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ton Profil Fun et Coloré</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff77ff, #ffdd00);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            width: 600px;
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            color: #ff4500;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff4500;
+            margin-bottom: 15px;
+        }
+
+        input, select, button {
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ff4500;
+            border-radius: 12px;
+            outline: none;
+            width: 80%;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #ff77ff;
+            box-shadow: 0 0 5px rgba(255, 119, 255, 0.5);
+        }
+
+        button {
+            background-color: #ff4500;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 80%;
+            padding: 12px;
+        }
+
+        button:hover {
+            background-color: #ff6347;
+        }
+
+        .emoji {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            background-color: #ffff00;
+            padding: 20px;
+            border-radius: 15px;
+            display: none;
+        }
+
+        .result p {
+            margin: 10px 0;
+        }
+
+        .funny-msg {
+            font-size: 1.8em;
+            color: #ff4500;
+            margin-top: 20px;
+        }
+
+        /* Animation effect */
+        @keyframes pop-up {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quel est ton profil ? 🤔</h1>
+        
+        <!-- Page 1 : Nom -->
+        <div id="page1">
+            <p class="question">Ton nom ?</p>
+            <input type="text" id="nom" placeholder="Ton nom" required>
+            <button onclick="nextPage('page1', 'page2')">Suivant</button>
+        </div>
+
+        <!-- Page 2 : Prénom -->
+        <div id="page2" style="display:none;">
+            <p class="question">Ton prénom ?</p>
+            <input type="text" id="prenom" placeholder="Ton prénom" required>
+            <button onclick="nextPage('page2', 'page3')">Suivant</button>
+        </div>
+
+        <!-- Page 3 : Âge -->
+        <div id="page3" style="display:none;">
+            <p class="question">Ton âge ?</p>
+            <input type="number" id="age" placeholder="Ton âge" required>
+            <button onclick="nextPage('page3', 'page4')">Suivant</button>
+        </div>
+
+        <!-- Page 4 : Sexe -->
+        <div id="page4" style="display:none;">
+            <p class="question">Ton sexe ?</p>
+            <select id="sexe" required>
+                <option value="homme">Homme 🧔</option>
+                <option value="femme">Femme 👩‍🦰</option>
+            </select>
+            <button onclick="nextPage('page4', 'page5')">Suivant</button>
+        </div>
+
+        <!-- Page 5 : Ville -->
+        <div id="page5" style="display:none;">
+            <p class="question">Où habites-tu ?</p>
+            <input type="text" id="ville" placeholder="Ta ville" required>
+            <button onclick="nextPage('page5', 'page6')">Suivant</button>
+        </div>
+
+        <!-- Page 6 : Occupation -->
+        <div id="page6" style="display:none;">
+            <p class="question">Que fais-tu dans la vie ?</p>
+            <input type="text" id="occupation" placeholder="Ton occupation" required>
+            <button onclick="nextPage('page6', 'page7')">Suivant</button>
+        </div>
+
+        <!-- Page 7 : Loisirs -->
+        <div id="page7" style="display:none;">
+            <p class="question">Quels sont tes loisirs ?</p>
+            <input type="text" id="loisirs" placeholder="Tes loisirs" required>
+            <button onclick="nextPage('page7', 'page8')">Suivant</button>
+        </div>
+
+        <!-- Page 8 : Musique -->
+        <div id="page8" style="display:none;">
+            <p class="question">Quelle est ta musique préférée ? 🎶</p>
+            <input type="text" id="musique" placeholder="Ta musique préférée" required>
+            <button onclick="nextPage('page8', 'page9')">Suivant</button>
+        </div>
+
+        <!-- Page 9 : Faculté -->
+        <div id="page9" style="display:none;">
+            <p class="question">À quelle faculté es-tu ? 🎓</p>
+            <input type="text" id="faculte" placeholder="Ta faculté" required>
+            <button onclick="nextPage('page9', 'page10')">Suivant</button>
+        </div>
+
+        <!-- Page 10 : Famille -->
+        <div id="page10" style="display:none;">
+            <p class="question">Comment s'appellent tes parents et tes frères/sœurs ? 👨‍👩‍👧‍👦</p>
+            <input type="text" id="famille" placeholder="Parents, frères/sœurs" required>
+            <button onclick="nextPage('page10', 'page11')">Suivant</button>
+        </div>
+
+        <!-- Page 11 : Qui tu aimes -->
+        <div id="page11" style="display:none;">
+            <p class="question">Tu aimes qui ? ❤️</p>
+            <input type="text" id="aimes" placeholder="La personne que tu aimes" required>
+            <button onclick="nextPage('page11', 'page12')">Suivant</button>
+        </div>
+
+        <!-- Page 12 : Âge du mariage -->
+        <div id="page12" style="display:none;">
+            <p class="question">À quel âge veux-tu te marier ? 💍</p>
+            <input type="number" id="mariage" placeholder="Ton âge idéal" required>
+            <button onclick="nextPage('page12', 'result')">Voir le résultat</button>
+        </div>
+
+        <!-- Résultat final -->
+        <div id="result" class="result" style="display:none;">
+            <p id="message"></p>
+            <div class="emoji">🎈</div>
+            <p class="funny-msg" id="commentaire"></p>
+        </div>
+    </div>
+
+    <script>
+        function nextPage(currentPage, nextPage) {
+            document.getElementById(currentPage).style.display = 'none';
+            document.getElementById(nextPage).style.display = 'block';
+        }
+
+        function genererMessage() {
+            const nom = document.getElementById("nom").value;
+            const prenom = document.getElementById("prenom").value;
+            const age = document.getElementById("age").value;
+            const sexe = document.getElementById("sexe").value;
+            const ville = document.getElementById("ville").value;
+            const occupation = document.getElementById("occupation").value;
+            const loisirs = document.getElementById("loisirs").value;
+            const musique = document.getElementById("musique").value;
+            const faculte = document.getElementById("faculte").value;
+            const famille = document.getElementById("famille").value;
+            const aimes = document.getElementById("aimes").value;
+            const mariage = document.getElementById("mariage").value;
+
+            let commentaire = sexe === "homme" ? "t'es gros" : "t'es grosse";
+            const message = `En vrai je m'en bas les couilles j'ai juste envie de te dire que`;
+
+            document.getElementById("message").innerText = message;
+            document.getElementById("commentaire").innerText = commentaire + " 😜";
+            document.getElementById("result").style.display = 'block';
+            document.getElementById("result").style.animation = "pop-up 0.5s ease-in-out";
+        }
+
+        // Mettre à jour la fonction pour afficher le résultat à la dernière page
+        document.querySelector('button[onclick="nextPage(\'page12\', \'result\')"]').onclick = genererMessage;
+    </script>
+</body>
+</html>
